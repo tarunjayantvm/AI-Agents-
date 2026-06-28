@@ -45,9 +45,7 @@ Result → LLM → Natural Language Response
 Conversation Memory (JSON)
 ```
 
----
 
-````markdown
 ## 🔄 Agent Workflow
 
 ```mermaid
@@ -131,7 +129,7 @@ flowchart TD
     class H response
     class I memory
 ```
-````
+
 
 
 ---
