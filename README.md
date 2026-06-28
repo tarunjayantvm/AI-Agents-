@@ -47,21 +47,92 @@ Conversation Memory (JSON)
 
 ---
 
-## 🔄 Workflow
+````markdown
+## 🔄 Agent Workflow
 
 ```mermaid
 flowchart TD
-A[User Input] --> B[Agent Loop]
-B --> C[LLM Reasons]
-C --> D{Tool Needed?}
-D -->|Yes| E[Execute Tool]
-E --> F[API / Python]
-F --> G[Tool Result]
-G --> H[LLM Generates Response]
-D -->|No| H
-H --> I[Save Memory]
-I --> J[Reply to User]
+
+    %% =========================
+    %% Nodes
+    %% =========================
+
+    A([👤 User Input])
+
+    B["🤖 ReAct Agent Loop"]
+
+    C["🧠 LLM Reasoning
+    (Nemotron 120B)"]
+
+    D{"🔍 Tool Required?"}
+
+    E["⚙️ Tool Executor"]
+
+    F["🌐 External APIs
+    / Python Functions"]
+
+    G["📊 Tool Result"]
+
+    H["💬 Natural Language
+    Response"]
+
+    I["💾 Save Conversation
+    Memory"]
+
+    J([✅ Response to User])
+
+    %% =========================
+    %% Connections
+    %% =========================
+
+    A --> B
+    B --> C
+    C --> D
+
+    D -- Yes --> E
+    E --> F
+    F --> G
+    G --> H
+
+    D -- No --> H
+
+    H --> I
+    I --> J
+
+    %% =========================
+    %% Colors
+    %% =========================
+
+    classDef user fill:#4CAF50,color:#fff,stroke:#2E7D32,stroke-width:3px;
+
+    classDef agent fill:#1976D2,color:#fff,stroke:#0D47A1,stroke-width:3px;
+
+    classDef llm fill:#9C27B0,color:#fff,stroke:#6A1B9A,stroke-width:3px;
+
+    classDef decision fill:#FB8C00,color:#fff,stroke:#E65100,stroke-width:3px;
+
+    classDef tool fill:#00ACC1,color:#fff,stroke:#006064,stroke-width:3px;
+
+    classDef api fill:#8BC34A,color:#fff,stroke:#33691E,stroke-width:3px;
+
+    classDef result fill:#26A69A,color:#fff,stroke:#004D40,stroke-width:3px;
+
+    classDef response fill:#EC407A,color:#fff,stroke:#880E4F,stroke-width:3px;
+
+    classDef memory fill:#5E35B1,color:#fff,stroke:#311B92,stroke-width:3px;
+
+    class A,J user
+    class B agent
+    class C llm
+    class D decision
+    class E tool
+    class F api
+    class G result
+    class H response
+    class I memory
 ```
+````
+
 
 ---
 
@@ -119,7 +190,7 @@ Examples:
 # 📁 Project Structure
 
 ```text
-multi-tool-ai-agent/
+ai-agents/
 │
 ├── main.py
 ├── tools.py
@@ -149,9 +220,9 @@ multi-tool-ai-agent/
 ## 1. Clone
 
 ```bash
-git clone https://github.com/yourusername/multi-tool-ai-agent.git
+git clone https://github.com/yourusername/ai-agents.git
 
-cd multi-tool-ai-agent
+cd ai-agents
 ```
 
 ## 2. Install
